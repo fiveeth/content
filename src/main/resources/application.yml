@@ -1,0 +1,21 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/content_center
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 5
+      max-active: 100
+      test-while-idle: true
+      validation-query: SELECT 1
+      min-evictable-idle-time-millis: 300000 # 5分鐘空閑則回收
+  application:
+    name: content-center
+  cloud:
+    nacos:
+      discovery:
+        # 指定nacos server的地址
+        server-addr: localhost:8848
