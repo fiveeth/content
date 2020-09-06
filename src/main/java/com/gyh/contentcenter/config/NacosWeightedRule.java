@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
+//这个类仅提供一种思路，早期的Spring Cloud Alibaba版本中Nacos权重配置对Spring Cloud Alibaba无效，
+//但是这个问题已经得到了修复，Nacos权重配置对Spring Cloud Alibaba是已经生效的
 /**
  * Nacos支持权重配置，这是个比较实用的功能，例如：
  * 把性能差的机器权重设低，性能好的机器权重设高，让请求优先打到性能高的机器上去；某个实例出现异常时，把权重设低，排查问题，问题排查完再把权重恢复；
