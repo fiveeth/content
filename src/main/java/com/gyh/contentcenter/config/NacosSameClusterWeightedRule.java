@@ -5,7 +5,6 @@ import com.alibaba.cloud.nacos.ribbon.NacosServer;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
-import com.alibaba.nacos.client.naming.core.Balancer;
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;
 import com.netflix.loadbalancer.BaseLoadBalancer;
@@ -62,12 +61,5 @@ public class NacosSameClusterWeightedRule extends AbstractLoadBalancerRule {
             e.printStackTrace();
             return null;
         }
-    }
-}
-
-//当无法直接调用指定方法的时候，取个巧，通过继承，子类可调用父类的方法（private除外）
-class ExtendBalancer extends Balancer {
-    public static Instance getHostByRandomWeight2(List<Instance> hosts) {
-        return getHostByRandomWeight(hosts);
     }
 }
