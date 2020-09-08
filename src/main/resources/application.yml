@@ -19,12 +19,14 @@ spring:
       discovery:
         # 指定nacos server的地址
         server-addr: localhost:8848
+        cluster-name: GZ
 #配置细粒度的Ribbon规则（配置属性方式）,这里指定了客户端
 user-center:
   ribbon:
 #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
-    NFLoadBalancerRuleClassName: com.gyh.contentcenter.config.NacosWeightedRule
+#    NFLoadBalancerRuleClassName: com.gyh.contentcenter.config.NacosWeightedRule
+    NFLoadBalancerRuleClassName: com.gyh.contentcenter.config.NacosSameClusterWeightedRule
 ribbon:
   eager-load:
-    enabled: true #设置为饥饿加载，默认是false，也就是懒加载，故第一次请求的时候响应会比较慢
+    enabled: true #设置为饥饿加载。默认是false，也就是懒加载，故第一次请求的时候响应会比较慢
     clients: user-center #为那些名称的Ribbon客户端指定饥饿加载，多个用逗号分隔

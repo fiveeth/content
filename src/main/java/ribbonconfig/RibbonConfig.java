@@ -15,5 +15,6 @@ public class RibbonConfig {
     public IRule ribbonRule() {
         return new RandomRule();
 //        return new NacosWeightedRule();
+//        return new NacosSameClusterWeightedRule();
     }
 }
