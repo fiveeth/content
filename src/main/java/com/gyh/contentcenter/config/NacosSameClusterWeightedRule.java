@@ -19,9 +19,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * 这个类仅提供一种思路，参考NacosRule类，NacosRule既支持naocs权重也支持同一集群的优先调用
+ * 同一集群优先调用且扩展了ribbon支持nacos的权重(这个类仅提供一种思路，参考NacosRule类，NacosRule既支持naocs权重也支持同一集群的优先调用)
+ *
+ * @author cncoder
  */
-//同一集群优先调用且扩展了ribbon支持nacos的权重
 @Slf4j
 public class NacosSameClusterWeightedRule extends AbstractLoadBalancerRule {
     @Autowired

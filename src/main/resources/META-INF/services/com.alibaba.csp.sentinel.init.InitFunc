@@ -1,0 +1,3 @@
+# 改成上面FileDataSourceInit的包名类名全路径即可
+# com.gyh.contentcenter.sentinel.FileDataSourceInit  //拉模式
+# com.gyh.contentcenter.sentinel.DataSourceInitFunc  //推模式

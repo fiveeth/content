@@ -12,10 +12,13 @@ import com.netflix.loadbalancer.Server;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
-//这个类仅提供一种思路，早期的Spring Cloud Alibaba版本中Nacos权重配置对Spring Cloud Alibaba无效，
-//但是这个问题已经得到了修复，参考NacosRule类
 
 /**
+ * 扩展ribbon支持nacos的权重
+ * <p>
+ * 这个类仅提供一种思路，早期的Spring Cloud Alibaba版本中Nacos权重配置对Spring Cloud Alibaba无效，
+ * 但是这个问题已经得到了修复，参考NacosRule类
+ * <p>
  * Nacos支持权重配置，这是个比较实用的功能，例如：
  * 把性能差的机器权重设低，性能好的机器权重设高，让请求优先打到性能高的机器上去；某个实例出现异常时，把权重设低，排查问题，问题排查完再把权重恢复；
  * 想要下线某个实例时，可先将该实例的权重设为0，这样流量就不会打到该实例上了——此时再去关停该实例，这样就能实现优雅下线啦。当然这是为Nacos量身定
@@ -25,8 +28,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  * <p>
  * Ribbon本身也有一个权重负载均衡的规则WeightedResponseTimeRule，但是这个是根据每个服务器的响应时间计算权重，根据这里得出的权重来选择服务器，
  * 响应时间越短的服务器被选择的概率越大
+ * <p>
+ *
+ * @author cncoder
  */
-//扩展ribbon支持nacos的权重
 @Slf4j
 public class NacosWeightedRule extends AbstractLoadBalancerRule {
     @Autowired

@@ -13,7 +13,7 @@ spring:
       validation-query: SELECT 1
       min-evictable-idle-time-millis: 300000 # 5分鐘空閑則回收
   application:
-    name: content-center
+    name: content-center #服务名
   main:
     allow-bean-definition-overriding: true
   cloud:
@@ -26,6 +26,14 @@ spring:
           version: v1 #自己这个实例的版本
           target-version: v1 #允许调用的提供者版本（白话文：v1版本的内容中心允许调用哪个版本的用户中心）
         #namespace: 8c078bf1-4864-4413-b300-de6b605635a6 #调用不能跨namespace
+    sentinel:
+      filter:
+        # sentinel对spring mvc端点的保护
+        enabled: true
+      transport:
+        # 指定sentinel控制台的地址（sentinel默认是懒加载的）
+        dashboard: localhost:8080
+      web-context-unify: false #Sentinel 1.7.0 版本开始（对应 SCA 2.1.1.RELEASE)，我们在 CommonFilter 引入了 WEB_CONTEXT_UNIFY 这个 init parameter，用于控制是否收敛 context。将其配置为 false 即可根据不同的 URL 进行链路限流。
 #配置细粒度的Ribbon规则（配置属性方式）,这里指定了客户端
 user-center:
   ribbon:
@@ -47,6 +55,9 @@ logging:
 #      user-center:
 #        loggerLevel: full
 feign:
+  sentinel:
+    #为feign整合sentinel
+    enabled: true
   client:
     config:
       default:
@@ -58,3 +69,19 @@ feign:
     max-connections: 200
     #feign单个路径的最大连接数
     max-connections-per-route: 50
+#@SentinelRestTemplate注解开关
+resttemplate:
+  sentinel:
+    enabled: false
+#开启actuator监控（端点检查、健康检查）
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#AHAS相关依赖
+#ahas:
+#  license: 3f1adf832ebe44428228b64dce22615d
+#  namespace: default
+#project:
+#  name: content-center

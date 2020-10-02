@@ -18,8 +18,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-//负载均衡规则：优先选择同集群下，符合metadata的实例
-//如果没有，就选择所有集群下，符合metadata的实例
+/**
+ * 负载均衡规则：优先选择同集群下，符合metadata的实例
+ * 如果没有，就选择所有集群下，符合metadata的实例
+ *
+ * @author cncoder
+ */
 @Slf4j
 public class NacosFinalRule extends AbstractLoadBalancerRule {
 
