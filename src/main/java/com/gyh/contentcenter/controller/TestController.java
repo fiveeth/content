@@ -13,6 +13,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.stream.messaging.Source;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,7 +22,6 @@ import java.util.List;
 
 /**
  * @author cncoder
- * @date 2020-07-28 8:57
  */
 @RestController
 public class TestController {
@@ -39,6 +40,9 @@ public class TestController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private Source source;
 
     @GetMapping("/test")
     public List<ServiceInstance> getInstance() {
@@ -172,4 +176,11 @@ public class TestController {
         UserDto userDto = restTemplate.getForObject("http://user-center/users/{id}", UserDto.class, userId);
         return userDto;
     }
+
+//    @GetMapping("test-stream")
+//    public String testStream() {
+//        source.output()
+//                .send(MessageBuilder.withPayload("测试stream").build());
+//        return "success";
+//    }
 }

@@ -34,6 +34,14 @@ spring:
         # 指定sentinel控制台的地址（sentinel默认是懒加载的）
         dashboard: localhost:8080
       web-context-unify: false #Sentinel 1.7.0 版本开始（对应 SCA 2.1.1.RELEASE)，我们在 CommonFilter 引入了 WEB_CONTEXT_UNIFY 这个 init parameter，用于控制是否收敛 context。将其配置为 false 即可根据不同的 URL 进行链路限流。
+    stream:
+      rocketmq:
+        binder:
+          name-server: 127.0.0.1:9876
+      bindings:
+        output:
+          #用来指定topic
+          destination: stream-test-topic
 #配置细粒度的Ribbon规则（配置属性方式）,这里指定了客户端
 user-center:
   ribbon:
@@ -48,6 +56,7 @@ ribbon:
 logging:
   level:
     com.gyh.contentcenter.feignclient.UserCenterFeignClient: debug
+    com.alibaba.nacos: error
 #feign:
 #  client:
 #    config:
@@ -85,3 +94,7 @@ management:
 #  namespace: default
 #project:
 #  name: content-center
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: test-group

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author cncoder
- * @date 2020-07-28 10:30
  */
 @RestController
 @RequestMapping("/shares")

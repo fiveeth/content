@@ -48,3 +48,16 @@ springcloud项目: 内容中心
 ##### sentinel官方文档：https://github.com/alibaba/Sentinel/wiki/%E5%9C%A8%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%AD%E4%BD%BF%E7%94%A8-Sentinel
 ##### 拉模式：https://www.imooc.com/article/289402
 ##### 推模式：https://www.imooc.com/article/289464
+## MQ
+### spring实现异步的方法
+![Alt text](src/main/resources/static/spring实现异步的方式.png)
+### MQ适用场景
+#### 异步处理
+#### 流量削峰
+#### 解耦微服务
+### MQ的选择
+https://www.imooc.com/article/290040
+### RocketMQ安装(windows)
+https://www.jianshu.com/p/4a275e779afa
+### 分布式事务
+![Alt text](src/main/resources/static/rocketmq分布式事务.png)
